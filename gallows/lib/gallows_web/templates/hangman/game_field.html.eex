@@ -1,0 +1,15 @@
+<%= game_state(@tally.game_state) %>
+
+<div>
+    <p>
+        Turns left: <%= @tally.turns_left %>
+    </p>
+    <p>
+        Word so far: <%= @tally.letters |> Enum.join(" ") %>
+    </p>
+</div>
+
+<%= form_for(@conn, Routes.hangman_path(@conn, :put), [as: :put, method: :put], fn f -> %>
+  <%= text_input(f, :guess)%>
+  <%= submit("Make next move")%>
+<% end) %>
